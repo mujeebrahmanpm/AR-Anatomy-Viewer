@@ -46,7 +46,18 @@
                 </ui:VisualElement>
 
                 <ui:VisualElement name="ClippingControls" picking-mode="Ignore" style="display: none; flex-direction: row;">
-                    <ui:Label text="Clipping controls placeholder" style="color: white;" />
+                    <ui:VisualElement picking-mode="Ignore" style="align-items: center; margin-right: 20px;">
+                        <ui:Label text="X" style="color: white;" />
+                        <ui:MinMaxSlider name="clip-x" low-limit="-1" high-limit="1" min-value="-1" max-value="1" style="width: 150px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" style="align-items: center; margin-right: 20px;">
+                        <ui:Label text="Y" style="color: white;" />
+                        <ui:MinMaxSlider name="clip-y" low-limit="-1" high-limit="1" min-value="-1" max-value="1" style="width: 150px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" style="align-items: center;">
+                        <ui:Label text="Z" style="color: white;" />
+                        <ui:MinMaxSlider name="clip-z" low-limit="-1" high-limit="1" min-value="-1" max-value="1" style="width: 150px;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
 
             </ui:VisualElement>

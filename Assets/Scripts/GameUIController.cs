@@ -22,6 +22,10 @@ public class GameUIController : MonoBehaviour
         var modeSwitch = root.Q<Toggle>("mode-switch");
         knob = root.Q<VisualElement>("mode-switch-knob");
 
+        var clipXSlider = root.Q<MinMaxSlider>("clip-x");
+        var clipYSlider = root.Q<MinMaxSlider>("clip-y");
+        var clipZSlider = root.Q<MinMaxSlider>("clip-z");
+
         transparencyControls = root.Q<VisualElement>("TransparencyControls");
         clippingControls = root.Q<VisualElement>("ClippingControls");
 
@@ -30,14 +34,15 @@ public class GameUIController : MonoBehaviour
         skullSlider.RegisterValueChangedCallback(evt => layerManager.SetSkullTransparency(evt.newValue));
         brainSlider.RegisterValueChangedCallback(evt => layerManager.SetBrainTransparency(evt.newValue));
 
+        clipXSlider.RegisterValueChangedCallback(evt => layerManager.SetClipRangeX(evt.newValue.x, evt.newValue.y));
+        clipYSlider.RegisterValueChangedCallback(evt => layerManager.SetClipRangeY(evt.newValue.x, evt.newValue.y));
+        clipZSlider.RegisterValueChangedCallback(evt => layerManager.SetClipRangeZ(evt.newValue.x, evt.newValue.y));
+
         modeSwitch.RegisterValueChangedCallback(evt =>
         {
             bool isClipMode = evt.newValue;
 
-            if (knob != null)
-            {
-                knob.style.left = isClipMode ? 47 : 5;
-            }
+            if (knob != null) knob.style.left = isClipMode ? 47 : 5;
 
             if (transparencyControls != null && clippingControls != null)
             {

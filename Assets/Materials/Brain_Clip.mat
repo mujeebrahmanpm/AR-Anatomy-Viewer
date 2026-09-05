@@ -103,6 +103,12 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ClipMaxX: 1000
+    - _ClipMaxY: 1000
+    - _ClipMaxZ: 1000
+    - _ClipMinX: -1000
+    - _ClipMinY: -1000
+    - _ClipMinZ: -1000
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
