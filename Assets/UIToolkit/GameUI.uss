@@ -1,0 +1,39 @@
+#mode-switch {
+    width: 90px;
+    height: 36px;
+}
+
+#mode-switch .unity-toggle__input {
+    flex-direction: row;
+}
+
+#mode-switch .unity-toggle__checkmark {
+    width: 90px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: rgb(80, 80, 80);
+    border-width: 0;
+    background-image: none;
+    margin: 0;
+    padding: 0;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    position: relative;
+    overflow: hidden;
+}
+
+#mode-switch:checked .unity-toggle__checkmark {
+    background-color: rgb(50, 120, 255);
+}
+
+#mode-switch-knob {
+    width: 38px;
+    height: 26px;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transition-property: left;
+    transition-duration: 0.15s;
+}

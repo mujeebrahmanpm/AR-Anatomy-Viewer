@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+>
+    <Style src="GameUI.uss" />
+
+    <ui:VisualElement name="GameUI" picking-mode="Ignore" style="flex-grow: 1;">
+
+        <ui:VisualElement name="LayerPanel" picking-mode="Ignore"
+            style="position: absolute; top: 20px; left: 20px; padding: 10px; background-color: rgba(30,30,30,0.6); border-radius: 8px;">
+            <ui:Label text="Layers" style="color: white; -unity-font-style: bold; margin-bottom: 4px;" />
+            <ui:Toggle name="skull-toggle" label="Skull" value="true" />
+            <ui:Toggle name="brain-toggle" label="Brain" value="true" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="ModeSwitch" picking-mode="Ignore"
+            style="position: absolute; top: 20px; right: 20px; flex-direction: row; align-items: center;">
+            <ui:Label text="Transparency" style="color: white; margin-right: 6px;" />
+            <ui:VisualElement picking-mode="Ignore" style="position: relative;">
+                <ui:Toggle name="mode-switch" />
+                <ui:VisualElement name="mode-switch-knob" picking-mode="Ignore" />
+            </ui:VisualElement>
+            <ui:Label text="Clipping" style="color: white; margin-left: 6px;" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="ControllerPanel" picking-mode="Ignore"
+            style="position: absolute; bottom: 20px; left: 0; right: 0; align-items: center;">
+
+            <ui:VisualElement name="ControllerBox" picking-mode="Ignore"
+                style="padding: 10px; background-color: rgba(30,30,30,0.6); border-radius: 8px;">
+
+                <ui:Label text="Controllers" style="color: white; -unity-font-style: bold; margin-bottom: 6px;" />
+
+                <ui:VisualElement name="TransparencyControls" picking-mode="Ignore" style="flex-direction: row;">
+                    <ui:VisualElement picking-mode="Ignore" style="align-items: center; margin-right: 20px;">
+                        <ui:Label text="Skull" style="color: white;" />
+                        <ui:Slider name="skull-slider" low-value="0" high-value="1" value="1" style="width: 150px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" style="align-items: center;">
+                        <ui:Label text="Brain" style="color: white;" />
+                        <ui:Slider name="brain-slider" low-value="0" high-value="1" value="1" style="width: 150px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="ClippingControls" picking-mode="Ignore" style="display: none; flex-direction: row;">
+                    <ui:Label text="Clipping controls placeholder" style="color: white;" />
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>
