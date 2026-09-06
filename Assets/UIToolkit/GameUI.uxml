@@ -14,6 +14,7 @@
             <ui:Label text="Layers" style="color: white; -unity-font-style: bold; margin-bottom: 4px;" />
             <ui:Toggle name="skull-toggle" label="Skull" value="true" />
             <ui:Toggle name="brain-toggle" label="Brain" value="true" />
+            <ui:Button name="reset-button" text="Reset View" style="margin-top: 8px;" />
         </ui:VisualElement>
 
         <ui:VisualElement name="ModeSwitch" picking-mode="Ignore"

@@ -5,6 +5,7 @@ public class GameUIController : MonoBehaviour
 {
     [SerializeField] private UIDocument uiDocument;
     [SerializeField] private AnatomyLayerManager layerManager;
+    [SerializeField] private ModelGestureController gestureController;
 
     private VisualElement root;
     private VisualElement transparencyControls;
@@ -20,6 +21,7 @@ public class GameUIController : MonoBehaviour
         var skullSlider = root.Q<Slider>("skull-slider");
         var brainSlider = root.Q<Slider>("brain-slider");
         var modeSwitch = root.Q<Toggle>("mode-switch");
+        var resetButton = root.Q<Button>("reset-button");
         knob = root.Q<VisualElement>("mode-switch-knob");
 
         var clipXSlider = root.Q<MinMaxSlider>("clip-x");
@@ -37,6 +39,8 @@ public class GameUIController : MonoBehaviour
         clipXSlider.RegisterValueChangedCallback(evt => layerManager.SetClipRangeX(evt.newValue.x, evt.newValue.y));
         clipYSlider.RegisterValueChangedCallback(evt => layerManager.SetClipRangeY(evt.newValue.x, evt.newValue.y));
         clipZSlider.RegisterValueChangedCallback(evt => layerManager.SetClipRangeZ(evt.newValue.x, evt.newValue.y));
+
+        resetButton.clicked += () => gestureController.ResetTransform();
 
         modeSwitch.RegisterValueChangedCallback(evt =>
         {

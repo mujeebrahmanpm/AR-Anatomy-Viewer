@@ -38,7 +38,7 @@ public class AnatomyLayer
     public void SetClipMinZ(float value) { if (activeInstance != null) activeInstance.SetFloat("_ClipMinZ", value); }
     public void SetClipMaxZ(float value) { if (activeInstance != null) activeInstance.SetFloat("_ClipMaxZ", value); }
 
-    public Bounds GetWorldBounds() => targetRenderer.bounds;
+    public Bounds GetLocalBounds() => targetRenderer.localBounds;
 }
 
 public class AnatomyLayerManager : MonoBehaviour
@@ -54,10 +54,12 @@ public class AnatomyLayerManager : MonoBehaviour
         skull.SetMode(false);
         brain.SetMode(false);
 
-        Bounds combined = skull.GetWorldBounds();
-        combined.Encapsulate(brain.GetWorldBounds());
+        Bounds combined = skull.GetLocalBounds();
+        combined.Encapsulate(brain.GetLocalBounds());
         boundsMin = combined.min;
         boundsMax = combined.max;
+
+        Debug.Log($"Local bounds min: {boundsMin}, max: {boundsMax}");
     }
 
     public void SetMode(bool isClipMode)
@@ -71,32 +73,45 @@ public class AnatomyLayerManager : MonoBehaviour
     public void SetSkullTransparency(float value) => skull.SetTransparency(value);
     public void SetBrainTransparency(float value) => brain.SetTransparency(value);
 
-    public void SetClipRangeX(float minVal, float maxVal) => SetClipRange(minVal, maxVal, Vector3.right);
-    public void SetClipRangeY(float minVal, float maxVal) => SetClipRange(minVal, maxVal, Vector3.up);
-    public void SetClipRangeZ(float minVal, float maxVal) => SetClipRange(minVal, maxVal, Vector3.forward);
+    public void SetClipRangeX(float minVal, float maxVal)
+    {
+        // Inverted to match this model's mesh orientation
+        SetClipRange(-maxVal, -minVal, Vector3.right);
+    }
+
+    public void SetClipRangeY(float minVal, float maxVal)
+    {
+        SetClipRange(minVal, maxVal, Vector3.up);
+    }
+
+    public void SetClipRangeZ(float minVal, float maxVal)
+    {
+        // Inverted to match this model's mesh orientation
+        SetClipRange(-maxVal, -minVal, Vector3.forward);
+    }
 
     void SetClipRange(float minVal, float maxVal, Vector3 axis)
     {
         float axisMin = Vector3.Dot(boundsMin, axis);
         float axisMax = Vector3.Dot(boundsMax, axis);
 
-        float worldMin = Mathf.Lerp(axisMin, axisMax, (minVal + 1f) / 2f);
-        float worldMax = Mathf.Lerp(axisMin, axisMax, (maxVal + 1f) / 2f);
+        float localMin = Mathf.Lerp(axisMin, axisMax, (minVal + 1f) / 2f);
+        float localMax = Mathf.Lerp(axisMin, axisMax, (maxVal + 1f) / 2f);
 
         if (axis == Vector3.right)
         {
-            skull.SetClipMinX(worldMin); skull.SetClipMaxX(worldMax);
-            brain.SetClipMinX(worldMin); brain.SetClipMaxX(worldMax);
+            skull.SetClipMinX(localMin); skull.SetClipMaxX(localMax);
+            brain.SetClipMinX(localMin); brain.SetClipMaxX(localMax);
         }
         else if (axis == Vector3.up)
         {
-            skull.SetClipMinY(worldMin); skull.SetClipMaxY(worldMax);
-            brain.SetClipMinY(worldMin); brain.SetClipMaxY(worldMax);
+            skull.SetClipMinY(localMin); skull.SetClipMaxY(localMax);
+            brain.SetClipMinY(localMin); brain.SetClipMaxY(localMax);
         }
         else
         {
-            skull.SetClipMinZ(worldMin); skull.SetClipMaxZ(worldMax);
-            brain.SetClipMinZ(worldMin); brain.SetClipMaxZ(worldMax);
+            skull.SetClipMinZ(localMin); skull.SetClipMaxZ(localMax);
+            brain.SetClipMinZ(localMin); brain.SetClipMaxZ(localMax);
         }
     }
 }

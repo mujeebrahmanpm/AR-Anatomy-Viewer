@@ -11,6 +11,11 @@ public class ModelGestureController : MonoBehaviour
     [SerializeField] private float minScale = 0.1f;
     [SerializeField] private float maxScale = 3f;
 
+    [Header("Reset values (local to parent)")]
+    [SerializeField] private Vector3 resetPosition = new Vector3(0f, 0f, 0f);
+    [SerializeField] private Vector3 resetEulerAngles = new Vector3(0f, 180f, 0f);
+    [SerializeField] private Vector3 resetScale = new Vector3(1f, 1f, 1f);
+
     private void OnEnable() => EnhancedTouchSupport.Enable();
     private void OnDisable() => EnhancedTouchSupport.Disable();
 
@@ -33,8 +38,13 @@ public class ModelGestureController : MonoBehaviour
         {
             HandlePinchAndPan(touches[0], touches[1]);
         }
-        // One-finger touches are intentionally ignored here —
-        // they only ever affect UI, never the model.
+    }
+
+    public void ResetTransform()
+    {
+        target.localPosition = resetPosition;
+        target.localEulerAngles = resetEulerAngles;
+        target.localScale = resetScale;
     }
 
     void HandleRotate(Touch touch)
