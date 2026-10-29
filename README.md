@@ -20,7 +20,6 @@ A flat screen shows one slice at a time. Anatomy is spatial, and the relationshi
 - AR Foundation / ARCore
 - XR Interaction Toolkit
 - Custom HLSL shaders for the clipping plane
-- 3D Slicer — segmentation of the imaging volume
 - Blender — mesh cleanup and retopology for real-time rendering
 
 Tested on a Samsung Galaxy Tab.
@@ -33,9 +32,12 @@ Tested on a Samsung Galaxy Tab.
 
 ## Assets and attribution
 
-The anatomical geometry is derived from a third-party model. <!-- TODO: replace with the model name, author, licence and link from its Sketchfab page -->
+"Exam 3 Segmentation of Skull, Brain, and Tumor" by emwigdahl, Sketchfab.
+Licensed under [CC Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
+Segmented from CT and MR data in the CEREBRIX dataset.
+https://sketchfab.com/3d-models/exam-3-segmentation-of-skull-brain-and-tumor-164afd6b605346d983422b19e314d8e6
 
-Segmentation, mesh preparation, shaders, UI and all application code are my own.
+The meshes have been modified for this project — decimated and retopologised for real-time rendering on mobile hardware, and split for per-layer control.
 
 ## Note
 
