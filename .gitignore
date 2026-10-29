@@ -34,3 +34,7 @@ sysinfo.txt
 
 # Crashlytics
 crashlytics-build.properties
+
+obj/
+.utmp/
+UIElementsSchema/
